@@ -1,0 +1,13 @@
+---
+- name: Configure the DevOps coursework server
+  hosts: web
+  become: true
+  vars:
+    site_root: /var/www/devops-site
+    site_owner: devops
+    ssh_public_key_file: /work/.private/devops_ed25519.pub
+  roles:
+    - {role: base, tags: [base]}
+    - {role: nginx, tags: [nginx]}
+    - {role: app, tags: [app]}
+    - {role: ssh, tags: [ssh]}

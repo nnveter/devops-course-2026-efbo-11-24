@@ -1,0 +1,29 @@
+---
+- name: Update apt metadata and installed packages
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    upgrade: safe
+- name: Install administration utilities
+  ansible.builtin.apt:
+    name: [curl, rsync, unzip, ca-certificates, fail2ban, python3]
+    state: present
+- name: Configure fail2ban for the actual SSH port
+  ansible.builtin.copy:
+    dest: /etc/fail2ban/jail.d/devops.local
+    content: |
+      [sshd]
+      enabled = true
+      port = 2222
+      backend = systemd
+      maxretry = 5
+      bantime = 600
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart fail2ban
+- name: Enable fail2ban
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: true

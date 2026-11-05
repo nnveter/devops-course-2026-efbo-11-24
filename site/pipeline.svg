@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="300" viewBox="0 0 420 300" role="img" aria-label="Git, Build, Test, Deploy">
+<rect x="10" y="10" width="400" height="280" rx="28" fill="#142037" stroke="#293b56"/>
+<path d="M90 80H330V220H90Z" fill="none" stroke="#68e0bf" stroke-width="3" stroke-dasharray="6 6"/>
+<g fill="#243653" stroke="#68e0bf" stroke-width="2"><circle cx="90" cy="80" r="34"/><circle cx="330" cy="80" r="34"/><circle cx="330" cy="220" r="34"/><circle cx="90" cy="220" r="34"/></g>
+<g fill="#eef4ff" font-family="sans-serif" font-size="14" text-anchor="middle"><text x="90" y="85">Git</text><text x="330" y="85">Build</text><text x="330" y="225">Test</text><text x="90" y="225">Deploy</text><text x="210" y="145" fill="#68e0bf" font-size="25" font-weight="bold">DevOps</text><text x="210" y="172" fill="#a7b7ce">code → service</text></g></svg>

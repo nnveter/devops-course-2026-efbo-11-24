@@ -1,0 +1,8 @@
+---
+- name: Upload and extract the static website archive
+  ansible.builtin.unarchive:
+    src: '{{ playbook_dir }}/../site.tar.gz'
+    dest: '{{ site_root }}'
+    owner: '{{ site_owner }}'
+    group: '{{ site_owner }}'
+    remote_src: false

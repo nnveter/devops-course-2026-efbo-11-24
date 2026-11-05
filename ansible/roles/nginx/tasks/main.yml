@@ -1,0 +1,31 @@
+---
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+- name: Create website directory
+  ansible.builtin.file:
+    path: '{{ site_root }}'
+    state: directory
+    owner: '{{ site_owner }}'
+    group: '{{ site_owner }}'
+    mode: '0755'
+- name: Install the existing coursework virtual host
+  ansible.builtin.copy:
+    src: '{{ playbook_dir }}/../nginx/devops-site'
+    dest: /etc/nginx/sites-available/devops-site
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Validate and reload Nginx
+- name: Enable the coursework virtual host
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/devops-site
+    dest: /etc/nginx/sites-enabled/devops-site
+    state: link
+  notify: Validate and reload Nginx
+- name: Enable and start Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
